@@ -26,6 +26,7 @@ WORKDIR /workspace
 COPY --from=build /workspace/dist ./dist
 COPY --from=build /workspace/node_modules ./node_modules
 # USER nestjs
+# USER nestjs
 EXPOSE 3004
 ENV PORT 3004
 # ENTRYPOINT ["yarn","start:prod"]
