@@ -21,13 +21,14 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nestjs
 
 WORKDIR /workspace
-# COPY --from=build --chown=nestjs:nodejs /workspace/dist ./dist
-# COPY --from=build --chown=nestjs:nodejs /workspace/node_modules ./node_modules
-COPY --from=build /workspace/dist ./dist
-COPY --from=build /workspace/node_modules ./node_modules
+COPY --from=build --chown=nestjs:nodejs /workspace/dist ./dist
+COPY --from=build --chown=nestjs:nodejs /workspace/node_modules ./node_modules
+# COPY --from=build /workspace/dist ./dist
+# COPY --from=build /workspace/node_modules ./node_modules
 # USER nestjs
 # USER nestjs
 EXPOSE 3004
 ENV PORT 3004
+USER nestjs
 # ENTRYPOINT ["yarn","start:prod"]
 CMD [ "node", "dist/main.js" ]
